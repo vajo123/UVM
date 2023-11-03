@@ -8,7 +8,7 @@ class driver_axi_stream_master extends uvm_driver#(seq_item_master);
     seq_item_master item;
     virtual interface title_interface vif;
 
-    function new(string name = "driver", uvm_component parent = null);
+    function new(string name = "driver_axi_stream_master", uvm_component parent = null);
         super.new(name,parent);
         
         if (!uvm_config_db#(virtual title_interface)::get(this, "", "title_interface", vif))

@@ -30,8 +30,4 @@ endclass : base_seq_lite
 
 `endif
 
-/*
-1. Relativna putanja fajlova - nisam uspeo da realizujem
-2. Zasto ne mogu da printam brojeve van funkcije
-3. Funkcija iz real u logic[15:0], zapis 4.12
-*/
+

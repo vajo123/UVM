@@ -10,7 +10,7 @@ class monitor_axi_lite extends uvm_monitor;
     virtual interface title_interface vif;
     uvm_analysis_port #(seq_item_lite) port_axi_lite; //sends items to scoreboard
 
-    function new(string name = "monitor", uvm_component parent = null);
+    function new(string name = "monitor_axi_lite", uvm_component parent = null);
         super.new(name,parent);  
         port_axi_lite = new("port_axi_lite", this);
     endfunction
@@ -33,7 +33,14 @@ class monitor_axi_lite extends uvm_monitor;
             @(posedge vif.clk iff vif.s00_axi_awready); 
             
             item.COM_OR_POS = vif.s00_axi_wdata;
-			//moze se dodati za item.offset
+			
+			if (vif.s00_axi_awaddr == 4'b0100) begin
+				item.offset = 1;
+			end 
+			else begin
+				item.offset = 0;
+			end
+			
             port_axi_lite.write(item);
         end
     endtask : main_phase
